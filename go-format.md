@@ -90,7 +90,7 @@ goimports = gofmt + fixing imports
 goreturns = goimports + return statement syntactic sugar
 ```
 
-等有需要再研究 goreturns，初步想法是希望 vscode 在保存的时候能够运行 goimports，这个本来也很简单，快捷键 Command+,在 setting 里搜索 format，然后选择 Extensions 里面的 Go，右侧出现的“Go: Format Tool”里选择 goimports，但是这种方式只会执行默认的命令，无法解决我遇到的特殊顺序要求，再看发现配置中还有"Go: Format Flags"配置，于是尝试添加参数" -w -local github.com/vmware-tanzu/antrea ."，但是不工作，网上尝试几种途径都未能解决，google 一圈后发现有一个插件是"Run On Save"似乎能满足要求,安装该插件后，在 vscode setting 里添加如下配置，让指定目录下的文件保存时运行命令"goimports -w -local github.com/vmware-tanzu/antrea ${file}"， ${file}是插件支持的占位符，执行时将被替换为当前保存的文件全路径。
+等有需要再研究 goreturns，初步想法是希望 vscode 在保存的时候能够运行 goimports，这个本来也很简单，快捷键 Command+,在 setting 里搜索 format，然后选择 Extensions 里面的 Go，右侧出现的“Go: Format Tool”里选择 goimports，但是这种方式只会执行默认的命令，无法解决我遇到的特殊顺序要求，再看发现配置中还有"Go: Format Flags"配置，于是尝试添加参数" -w -local github.com/vmware-tanzu/antrea ."，但是不工作，网上尝试几种途径都未能解决，google 一圈后发现有一个插件是"Run On Save"似乎能满足要求,安装该插件后，在 vscode setting 里添加如下配置，让指定目录下的文件保存时运行命令"goimports -w -local github.com/vmware-tanzu/antrea ${file}"， ${file}是插件支持的占位符，执行时将被替换为当前保存的文件全路径。要看设置的效果可以在修改文件保存后，在 OUTPUT tab 页的右上角的下拉框选择"Run On Save"来看命令行的输出结果。
 
 ```json
 "emeraldwalk.runonsave": {
