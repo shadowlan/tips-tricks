@@ -22,13 +22,21 @@ make
    - 检查模块是否加载： `lsmod | grep -E 'openvswitch|vport_lisp|vport_stt'`
 5. 显示模块信息和依赖：`modinfo openvswitch`,`modprobe -D openvswitch`
 
+## 概述
+
+Open vSwitch架构图  
+![Open vSwitch架构图](./imgs/ovs-arch.png)
+
+![OVS internal](./imgs/ovs-internal.png)
+
+- ovs-vswitchd, 实现交换机的守护进程，与Linux内核模块共同实现基于流的报文交换。
+- ovsdb-server, 一个轻量级的数据库，ovs-vswitchd 查询以获取其配置信息。
+- ovs-vsctl: 用于查询和更新 ovs-vswitchd 的配置的实用程序。
+- ovs-ofctl: 用于查询和控制OpenFlow交换机和控制器的应用程序。
+- ovs-dpctl: 用于配置交换机内核模块的工具。
+- ovs-appctl: 一个向Open vSwitch守护进程发送命令的程序。
+
 ## 常用命令
-
-
-ovs-vsctl: 用于查询和更新 ovs-vswitchd 的配置的实用程序。
-ovs-ofctl: 用于查询和控制OpenFlow交换机和控制器的应用程序。
-ovs-dpctl: 用于配置交换机内核模块的工具。
-ovs-appctl: 一个向Open vSwitch守护进程发送命令的程序。
 
 ### [ovs-vsctl](http://www.openvswitch.org/support/dist-docs/ovs-vsctl.8.txt)
 
@@ -103,8 +111,11 @@ iperf -u -s -B 226.94.1.1
 
 ## 参考
 
-* [从源码安装Open vSwitch](https://github.com/ebiken/doc-network/wiki/How-To:-Install-OVS-(Kernel-Module)-from-Source-Code)
-* [ovs advance](https://docs.openvswitch.org/en/latest/tutorials/ovs-advanced/)
-* [ovs cheatsheet](https://gist.github.com/djoreilly/c5ea44663c133b246dd9d42b921f7646)
-* [ovs-ofctl ubuntu man page](http://manpages.ubuntu.com/manpages/trusty/man8/ovs-ofctl.8.html)
+* [ovs概述](http://www.nfvschool.cn/?p=561)
 * [ovs-fields](http://www.openvswitch.org/support/dist-docs/ovs-fields.7.txt)
+* [ovs advance](https://docs.openvswitch.org/en/latest/tutorials/ovs-advanced/)
+* [ovs 流表规则](https://segmentfault.com/a/1190000038767587)
+* [ovs cheatsheet](https://gist.github.com/djoreilly/c5ea44663c133b246dd9d42b921f7646)
+* [从源码安装Open vSwitch](https://github.com/ebiken/doc-network/wiki/How-To:-Install-OVS-(Kernel-Module)-from-Source-Code)
+* [ovs-ofctl ubuntu man page](http://manpages.ubuntu.com/manpages/trusty/man8/ovs-ofctl.8.html)
+* [OpenvSwitch/OpenFlow 架构解析与实践案例](https://www.cnblogs.com/jmilkfan-fanguiju/p/10589725.html#_0)
