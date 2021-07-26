@@ -98,7 +98,7 @@ goreturns = goimports + return statement syntactic sugar
         {
             "match": "/Users/codes/antrea/.*",
             "isAsync": true,
-            "cmd": "goimports -w -local github.com/vmware-tanzu/antrea ${file}"
+            "cmd": "goimports -w -local github.com/antrea-io/antrea ${file}"
         }
     ]
 }
