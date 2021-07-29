@@ -2,7 +2,7 @@
 
 ## 安装
 
-这里介绍从源码安装openvswitch-2.14.1，下载地址是https://www.openvswitch.org/releases/openvswitch-2.14.1.tar.gz。
+这里介绍从源码安装openvswitch-2.14.1，下载地址是https://www.openvswitch.org/releases/openvswitch-2.14.1.tar.gz。操作系统是Ubuntu20.04
 
 1. 先安装一些依赖包： `sudo apt-get install autoconf make libtool`
 2. 解压文件并编译：
@@ -18,8 +18,8 @@ make
    - 备份系统的原始模块文件： `sudo cp /lib/modules/5.4.0-67-generic/kernel/net/openvswitch/* backup`
    - 删除原始模块文件：`sudo rm /lib/modules/5.4.0-67-generic/kernel/net/openvswitch/*`
    - 为modprobe命令运行更新依赖列表：`sudo depmod`
-   - 加载openvswitch和需要的相关模块：`modprobe openvswitch;modprobe vport-stt;modprobe vport-lisp`
-   - 检查模块是否加载： `lsmod | grep -E 'openvswitch|vport_lisp|vport_stt'`
+   - 加载openvswitch和需要的相关模块：`modprobe openvswitch;modprobe vport-stt;modprobe vport-lisp;modprobe vport-vxlan;modprobe vport-geneve;modprobe vport-gre`
+   - 检查模块是否加载： `lsmod | grep -E 'openvswitch|vport_lisp|vport_stt|vport_gre|vport_vxlan|vport_geneve|vport_geneve'`
 5. 显示模块信息和依赖：`modinfo openvswitch`,`modprobe -D openvswitch`
 
 ## 概述
@@ -47,7 +47,6 @@ ovs-vsctl list bridge br-int
 ovs-vsctl list interface
 # 以表格方式查看指定接口信息
 ovs-vsctl --columns=ofport,name --format=table list Interface
-
 ```
 
 ### [ovs-ofctl](http://www.openvswitch.org/support/dist-docs/ovs-ofctl.8.txt)
@@ -85,7 +84,10 @@ ovs-appctl ofproto/trace br-int in_port="poda-net-ea06dd",udp,nw_src=192.168.224
 ```
 ovs-vsctl add-br br0
 ovs-vsctl add-port br0 eth0
-```    
+```
+
+* 查看OVS版本: `ovs-vswitchd --version`
+* 启动OVS daemon: `/usr/share/openvswitch/scripts/ovs-ctl start`
 
 ## 组播相关
 
