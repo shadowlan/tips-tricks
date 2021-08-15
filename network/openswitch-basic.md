@@ -25,9 +25,9 @@ make
 ## 概述
 
 Open vSwitch架构图  
-![Open vSwitch架构图](./imgs/ovs-arch.png)
+![Open vSwitch架构图](../imgs/ovs-arch.png)
 
-![OVS internal](./imgs/ovs-internal.png)
+![OVS internal](../imgs/ovs-internal.png)
 
 - ovs-vswitchd, 实现交换机的守护进程，与Linux内核模块共同实现基于流的报文交换。
 - ovsdb-server, 一个轻量级的数据库，ovs-vswitchd 查询以获取其配置信息。
