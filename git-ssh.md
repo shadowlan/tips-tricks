@@ -26,3 +26,6 @@ Host github.com
 $git remote rm origin
 $git remote add origin git@s.github.com:user1/demo.git 
 ```
+
+当用`git`命令无法连接github时，可以尝试用`ssh -T -vvv github.com`来查看更多的错误信息。
+如果遇到`host github.com port 22: Connection refused`,可以尝试将配置文件中的`hostname github.com`替换为`hostname ssh.github.com`。
