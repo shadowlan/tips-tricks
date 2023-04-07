@@ -61,6 +61,15 @@ prompt_context() {
   fi
 }
 ```
+
+如果想在终端显示当前时间，可以把上面的`prompt_segment black default "%(!.%{%F{yellow}%}.)%n"`修改如下：
+```
+prompt_segment black default "%F{yellow}[%D{%L:%M:%S}]%(!.%{%F{yellow}%}.)%n"
+```
+同时需要在~/.zshrc加一行`source ~/.oh-my-zsh/themes/agnoster.zsh-theme`,否则新开的terminal不会自带时间，不确定是哪里缺了配置，暂不研究。
+
+动态显示时间可以参考[这个回答](https://askubuntu.com/questions/360063/how-to-show-a-running-clock-in-terminal-before-the-command-prompt)
+
 3. 安装三个常用插件
 * 语法高亮插件 zsh-syntax-highlighting： `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting`
 * 自动补全插件 zsh-autosuggestions: `git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions`
